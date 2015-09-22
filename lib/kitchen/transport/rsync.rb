@@ -39,7 +39,7 @@ module Kitchen
             recursive = File.directory?(local)
             execute("mkdir -p #{full_remote}") if recursive
             time = Benchmark.realtime do
-              ssh_command = [login_command.command, login_command.arguments].flatten.join(' ')
+              ssh_command = [login_command.command, login_command.arguments[0..-2]].flatten.join(' ')
               sync_command = "rsync -e '#{ssh_command}' -a#{@logger.debug? ? 'v' : ''}z #{local} #{@session.options[:user]}@#{@session.host}:#{remote}"
               @logger.debug("[RSYNC] Running rsync command: #{sync_command}")
               system(sync_command)
