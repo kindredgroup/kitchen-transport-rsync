@@ -44,7 +44,7 @@ module Kitchen
               @logger.debug("[RSYNC] Running rsync command: #{sync_command}")
               system(sync_command)
             end
-            logger.info("[RSYNC] Time taken to upload #{local} to #{self}:#{full_remote}: %.2f sec" % time)
+            logger.debug("[RSYNC] Time taken to upload #{local} to #{self}:#{full_remote}: %.2f sec" % time)
           end
         end
       end
