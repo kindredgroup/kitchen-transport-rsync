@@ -22,6 +22,16 @@ module Kitchen
   module Transport
     class Rsync < Ssh
 
+      def finalize_config!(instance)
+        super.tap do
+          if defined?(Kitchen::Verifier::Inspec) && instance.verifier.is_a?(Kitchen::Verifier::Inspec)
+            instance.verifier.send(:define_singleton_method, :runner_options_for_rsync) do |config_data|
+              runner_options_for_ssh(config_data)
+            end
+          end
+        end
+      end
+
       def create_new_connection(options, &block)
         if @connection
           logger.debug("[SSH] shutting previous connection #{@connection}")
