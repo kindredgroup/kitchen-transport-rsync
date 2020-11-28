@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/kitchen-transport-rsync.svg)](http://badge.fury.io/rb/kitchen-transport-rsync)
 
 This transport is based on rsync over ssh providing dramatic performance improvements.
-It will only work with TK 1.4 and rsync has to be available in the PATH on both local and remote end points.
+It will only work when rsync is available in the PATH on both local and remote end points.
 
 Only passwordless (using ssh key pair) communication is supported at the moment.
 
